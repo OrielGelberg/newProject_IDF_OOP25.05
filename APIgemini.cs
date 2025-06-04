@@ -18,7 +18,6 @@ internal class APIgemini
         public async Task CallGeminiApiAsync()
         {
             // TODO: Store your API key securely (e.g., in environment variables or a configuration file)
-            string apiKey = "AIzaSyCh09Fbv6VClviI-IsT6DvUnggvNpWpjoQ";
 
             // Construct the API request URL
             string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={apiKey}";
