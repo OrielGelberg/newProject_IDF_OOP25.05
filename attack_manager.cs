@@ -8,6 +8,7 @@ namespace OOP_project_idf
         Hermes460_Zik_Drone hermes460_Zik_Drone = new Hermes460_Zik_Drone();
         F16FighterJet f16FighterJet = new F16FighterJet();
         M109Artillery m109Artillery = new M109Artillery();
+        Ahman ahman = new Ahman(); // Added an instance of Ahman  
 
         public void statushermes460_Zik_Drone()
         {
@@ -33,14 +34,14 @@ namespace OOP_project_idf
             Console.WriteLine($"Weapons: {string.Join(", ", target.GetWeapons())}");
             Console.WriteLine();
 
-            // Select best unit for the strike
+            // Select best unit for the strike  
             StrikeUni selectedUnit = selectBestUnitForTerrorist(target);
             Console.WriteLine($"Selected Strike Unit: {selectedUnit.NameForValidity()}");
             Console.WriteLine();
 
-            // Execute the strike
+            // Execute the strike  
             selectedUnit.Strike();
-            
+
             Console.WriteLine();
             Console.WriteLine(" TARGET ELIMINATED ");
             Console.WriteLine($"{target.get_Name()} has been successfully neutralized!");
@@ -91,25 +92,23 @@ namespace OOP_project_idf
 
         private StrikeUni selectBestUnitForTerrorist(Terrorist target)
         {
-            // Logic to select best unit based on terrorist characteristics
-            var weapons = target.GetWeapons();
-            int dangerLevel = target.QualityGoal();
+            // Get the location name from Ahman instance  
+            string location = ahman.get_Location(target.get_Name());
 
-            // High danger terrorists (>10) - use F16 for maximum impact
-            if (dangerLevel > 10)
+            if (location.ToLower().Contains("urban") || location.ToLower().Contains("building"))
             {
                 return f16FighterJet;
             }
-            // Medium danger terrorists (5-10) - use precision drone
-            else if (dangerLevel >= 5)
+            else if (location.ToLower().Contains("remote") || location.ToLower().Contains("mountain"))
             {
                 return hermes460_Zik_Drone;
             }
-            // Low danger terrorists - use artillery
-            else
+            else if (location.ToLower().Contains("open") || location.ToLower().Contains("desert"))
             {
                 return m109Artillery;
             }
+
+            return hermes460_Zik_Drone;
         }
     }
 }

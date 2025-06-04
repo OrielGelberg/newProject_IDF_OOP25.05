@@ -14,6 +14,10 @@ namespace OOP_project_idf
             this.hamas = hamasInstance; // Use the same Hamas instance
         }
 
+        public Ahman()
+        {
+        }
+
         public void ahman(string nameTerrorist, string location)
         {
             DateTime time = DateTime.Now;
@@ -98,6 +102,19 @@ namespace OOP_project_idf
                 terrorists.Remove(terroristName);
                 Console.WriteLine($"Intelligence reports for {terroristName} have been archived.");
             }
+        }
+        public string get_Location(string terroristName)
+        {
+            if (terrorists.ContainsKey(terroristName) && terrorists[terroristName].Count > 0)
+            {
+                // Get the most recent report for the terrorist
+                var lastReport = terrorists[terroristName][terrorists[terroristName].Count - 1];
+                if (lastReport.ContainsKey("location"))
+                {
+                    return lastReport["location"];
+                }
+            }
+            return "Unknown";
         }
     }
 }

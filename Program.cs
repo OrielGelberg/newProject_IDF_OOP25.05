@@ -1,10 +1,12 @@
-﻿using System;
+﻿using new25._05;
+using System;
+using System.Threading.Tasks;
 
 namespace OOP_project_idf
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Hamas hamas = new Hamas();
             Ahman ahman = new Ahman(hamas); 
@@ -94,7 +96,17 @@ namespace OOP_project_idf
 
                     case 't':
                         ahman.showAllTerrorists();
-                        break;
+                    //    APIgemini apiGeminiInstance = new APIgemini();
+                    //case 't':
+                    //    //ahman.showAllTerrorists();
+                    //    APIgemini apiGeminiInstance = new APIgemini();
+                    //    await apiGeminiInstance.CallGeminiApiAsync();
+                    //    break;
+                    //case 't':
+                    //    APIgemini apiGeminiInstance = new APIgemini();
+                    //    await apiGeminiInstance.CallGeminiApiAsync();
+                       break;
+                        
 
                     case 'e':
                         continueProgram = false;
